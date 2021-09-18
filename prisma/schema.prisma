@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model       User {
+  id        Int  @id @default(autoincrement())
+  username  String @db.VarChar(255) @unique
+  email     String @db.VarChar(255) @unique
+  password  String @db.VarChar(255)
+  biodata   Biodata?
+  posting   Posting[]
+  creatAt   DateTime @default(now())
+  updateAt  DateTime @updatedAt 
+}
+
+model         Biodata {
+  id          Int       @id @default(autoincrement())
+  firs_name   String?
+  last_name   String?
+  phone       String?
+  married     Boolean   @default(false)
+  user_id     Int       @unique
+  User        User      @relation(fields: [user_id], references: [id])
+  gander      String?
+  address     String?
+}
+
+model       Posting  {
+  id        Int  @id @default(autoincrement())
+  title     String @db.VarChar(255)
+  Body      String @db.Text()
+  user_id   Int
+  User      User @relation(fields: [user_id], references: [id])   
+  creatAt   DateTime @default(now())
+  updateAt  DateTime @updatedAt 
+}

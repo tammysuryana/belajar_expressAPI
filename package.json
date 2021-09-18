@@ -1,0 +1,19 @@
+{
+  "name": "socmed_project",
+  "version": "1.0.0",
+  "description": "belajar express ",
+  "main": "index.js",
+  "scripts": {
+    "mulai": "nodemon index.js --watch"
+  },
+  "author": "tammy suryana",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^3.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "prisma": "^3.0.2"
+  }
+}
